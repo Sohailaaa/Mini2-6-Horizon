@@ -3,11 +3,10 @@ package com.example.miniapp.controllers;
 import com.example.miniapp.models.Captain;
 import com.example.miniapp.services.CaptainService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/captain")
@@ -21,28 +20,28 @@ public class CaptainController {
 
     @PostMapping("/addCaptain")
     public Captain addCaptain(@RequestBody Captain captain) {
-        return null;
+        return captainService.addCaptain(captain);
     }
 
     @GetMapping("/allCaptains")
     public List<Captain> getAllCaptains() {
-        return null;
+        return captainService.getAllCaptains();
     }
 
     @GetMapping("/{id}")
-    public Captain getCaptainById(@PathVariable Long id) {
-        return null;
+    public Optional<Captain> getCaptainById(@PathVariable Long id) {
+        return captainService.getCaptainById(id);
     }
 
     @GetMapping("/filterByRating")
     public List<Captain> getCaptainsByRating(@RequestParam Double ratingThreshold) {
-        return null;
+        return captainService.getCaptainsByRating(ratingThreshold);
     }
 
 
     @GetMapping("/filterByLicenseNumber")
-    public Captain getCaptainByLicenseNumber(@RequestParam String licenseNumber) {
-        return null;
+    public Optional<Captain> getCaptainByLicenseNumber(@RequestParam String licenseNumber) {
+        return captainService.getCaptainByLicenseNumber(licenseNumber);
     }
 
 }

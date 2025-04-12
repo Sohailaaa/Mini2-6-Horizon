@@ -5,6 +5,7 @@ import com.example.miniapp.repositories.CaptainRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CaptainService {
@@ -17,23 +18,23 @@ public class CaptainService {
 
 
     public Captain addCaptain(Captain captain) {
-        return null;
+        return captainRepository.save(captain);
     }
 
     public List<Captain> getAllCaptains() {
-        return null;
+        return captainRepository.findAll();
     }
 
-    public Captain getCaptainById(Long id) {
-        return null;
+    public Optional<Captain> getCaptainById(Long id) {
+        return captainRepository.findById(id);
     }
 
     public List<Captain> getCaptainsByRating(Double ratingThreshold) {
-        return null;
+        return captainRepository.findByAvgRatingScoreGreaterThan(ratingThreshold);
     }
 
-    public Captain getCaptainByLicenseNumber(String licenseNumber) {
-        return null;
+    public Optional<Captain> getCaptainByLicenseNumber(String licenseNumber) {
+        return captainRepository.findByLicenseNumber(licenseNumber);
     }
 
 

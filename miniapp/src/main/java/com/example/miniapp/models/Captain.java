@@ -30,5 +30,6 @@ public class Captain {
         this.name = name;
         this.licenseNumber = licenseNumber;
         this.avgRatingScore = avgRatingScore;
+        trips = new ArrayList<>();
     }
 }

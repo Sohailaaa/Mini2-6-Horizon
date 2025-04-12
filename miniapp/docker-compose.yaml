@@ -24,7 +24,7 @@ services:
 
   postgres:
     image: postgres
-    container_name: postgres
+    container_name: postgres_miniapp
     environment:
       POSTGRES_DB: mini2_6_horizon
       POSTGRES_USER: postgres
@@ -41,5 +41,7 @@ services:
     ports:
       - "8081:8080"
     environment:
-      spring.datasource.url: jdbc:postgresql://postgres:5432/mini2_6_horizon
+      spring.datasource.url: jdbc:postgresql://postgres_miniapp:5432/mini2_6_horizon
       spring.data.mongodb.uri: mongodb://root:example@mongo:27017/mini2_6_horizon?authSource=admin
+      spring.datasource.username: postgres
+      spring.datasource.password: 1234

@@ -30,5 +30,6 @@ public class Customer {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        trips = new ArrayList<>();
     }
 }
