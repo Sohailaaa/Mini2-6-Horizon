@@ -1,12 +1,11 @@
 services:
-
   mongo:
     image: mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: Mini2-6-Horizon
+      MONGO_INITDB_DATABASE: mini2_6_horizon
     ports:
       - "27017:27017"
 
@@ -18,16 +17,16 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/Mini2-6-Horizon?authSource=admin
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/mini2_6_horizon?authSource=admin
       ME_CONFIG_BASICAUTH: "false"
     depends_on:
       - mongo
 
   postgres:
     image: postgres
-    container_name: postgres_miniapp
+    container_name: postgres
     environment:
-      POSTGRES_DB: Mini2-6-Horizon
+      POSTGRES_DB: mini2_6_horizon
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
     ports:
@@ -42,10 +41,5 @@ services:
     ports:
       - "8081:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/Mini2-6-Horizon
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: 1234
-      SPRING_DATA_MONGODB_URI: mongodb://root:example@mongo:27017/Mini2-6-Horizon?authSource=adm
-
-
-
+      spring.datasource.url: jdbc:postgresql://postgres:5432/mini2_6_horizon
+      spring.data.mongodb.uri: mongodb://root:example@mongo:27017/mini2_6_horizon?authSource=admin
