@@ -21,38 +21,45 @@ public class PaymentController {
 
     @PostMapping("/addPayment")
     public Payment addPayment(@RequestBody Payment payment) {
-        return null;
+
+        return paymentService.addPayment(payment);
     }
 
     @GetMapping("/allPayments")
     public List<Payment> getAllPayments() {
-        return null;
+
+        return paymentService.getAllPayments();
     }
 
     @GetMapping("/{id}")
     public Payment getPaymentById(@PathVariable Long id) {
-        return null;
+
+        return paymentService.getPaymentById(id);
     }
 
     @PutMapping("/update/{id}")
     public Payment updatePayment(@PathVariable Long id, @RequestBody Payment payment) {
-        return null;
+
+        return paymentService.updatePayment(id, payment);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deletePayment(@PathVariable Long id) {
-        return null;
+        try{
+            paymentService.deletePayment(id);
+            return "Deleted Successfully";
+        }catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     @GetMapping("/findByTripId")
     public List<Payment> findPaymentsByTripId(@RequestParam Long tripId) {
-        return null;
+        return paymentService.findPaymentsByTripId(tripId);
     }
 
     @GetMapping("/findByAmountThreshold")
     public List<Payment> findPaymentsWithAmountGreaterThan(@RequestParam Double threshold) {
-        return null;
+        return paymentService.findByAmountThreshold(threshold);
     }
-
-
 }
