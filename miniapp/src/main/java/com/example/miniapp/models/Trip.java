@@ -17,7 +17,6 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private LocalDateTime tripDate;
     private String origin;
     private String destination;
