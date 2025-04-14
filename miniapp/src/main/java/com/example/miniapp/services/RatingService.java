@@ -17,7 +17,8 @@ public class RatingService {
     }
 
     public Rating addRating(Rating rating) {
-        return null;
+                 return ratingRepository.save(rating);
+
     }
 
     public Rating updateRating(String id, Rating updatedRating) {
