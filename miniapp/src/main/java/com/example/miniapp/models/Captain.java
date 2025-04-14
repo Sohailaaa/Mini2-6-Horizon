@@ -1,5 +1,7 @@
 package com.example.miniapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +25,7 @@ public class Captain {
     private Double avgRatingScore;
 
     @OneToMany(mappedBy = "captain")
+    @JsonIgnore
     private List<Trip> trips = new ArrayList<>();
 
     public Captain(String name, String licenseNumber, Double avgRatingScore) {

@@ -1,5 +1,7 @@
 package com.example.miniapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +26,7 @@ public class Customer {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<Trip> trips = new ArrayList<>();
 
     public Customer(String name, String email, String phoneNumber) {

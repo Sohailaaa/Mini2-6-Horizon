@@ -1,5 +1,6 @@
 package com.example.miniapp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,11 +24,13 @@ public class Trip {
     private Double tripCost;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "captain_id", referencedColumnName = "id")
+    @JoinColumn(name = "captain_id")
+    @JsonBackReference
     private Captain captain;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JoinColumn(name = "customer_id")
+    @JsonBackReference
     private Customer customer;
 
     @OneToOne(mappedBy = "trip")
