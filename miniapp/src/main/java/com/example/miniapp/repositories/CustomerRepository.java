@@ -13,7 +13,8 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-//    List<Customer> findByEmailDomain(@Param("domain") String domain);
-//
-//    List<Customer> findByPhonePrefix(@Param("prefix") String prefix);
+
+List<Customer> findByEmailEndingWith(String domain);
+
+List<Customer> findByPhoneNumberStartingWith(String prefix);
 }

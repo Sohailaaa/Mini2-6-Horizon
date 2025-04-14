@@ -21,35 +21,36 @@ public class CustomerController {
 
     @PostMapping("/addCustomer")
     public Customer addCustomer(@RequestBody Customer customer) {
-        return null;
+        return customerService.addCustomer(customer);
     }
 
     @GetMapping("/allCustomers")
     public List<Customer> getAllCustomers() {
-        return null;
+        return customerService.getAllCustomers();
     }
 
     public Customer getCustomerById(@PathVariable Long id) {
-        return null;
+        return customerService.getCustomerById(id);
     }
 
     @PutMapping("/update/{id}")
     public Customer updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-        return null;
+        return customerService.updateCustomer(id, customer);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable Long id) {
-        return null;
+        customerService.deleteCustomer(id);
+        return "Customer with ID " + id + " has been deleted.";
     }
 
     @GetMapping("/findByEmailDomain")
     public List<Customer> findCustomersByEmailDomain(@RequestParam String domain) {
-        return null;
+        return customerService.findCustomersByEmailDomain(domain);
     }
 
     @GetMapping("/findByPhonePrefix")
     public List<Customer> findCustomersByPhonePrefix(@RequestParam String prefix) {
-        return null;
+        return customerService.findCustomersByPhonePrefix(prefix);
     }
 }

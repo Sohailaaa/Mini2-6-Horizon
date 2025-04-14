@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -17,26 +18,39 @@ public class CustomerService {
     }
 
     public List<Customer> getAllCustomers() {
-        return null;
+        return customerRepository.findAll();
     }
 
+    public Customer addCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
     public Customer getCustomerById(Long id) {
-        return null;
+        return customerRepository.findById(id).orElse(null);
     }
 
-    public Customer updateCustomer(Long id, Customer customer) {
+   //to test
+   public Customer updateCustomer(Long id, Customer updatedCustomer) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent()) {
+            Customer customer = optionalCustomer.get();
+            customer.setName(updatedCustomer.getName());
+            customer.setEmail(updatedCustomer.getEmail());
+            customer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+            return customerRepository.save(customer);
+        }
         return null;
     }
 
     public void deleteCustomer(Long id) {
+        customerRepository.deleteById(id);
     }
 
     public List<Customer> findCustomersByEmailDomain(String domain) {
-        return null;
+        return customerRepository.findByEmailEndingWith(domain);
     }
 
     public List<Customer> findCustomersByPhonePrefix(String prefix) {
-        return null;
+        return customerRepository.findByPhoneNumberStartingWith(prefix);
     }
 
 }
