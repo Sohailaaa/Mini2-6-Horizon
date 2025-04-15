@@ -22,7 +22,7 @@ public class RatingController {
 
     @PostMapping("/addRating")
     public Rating addRating(@RequestBody Rating rating) {
-        return null;
+        return ratingService.addRating(rating);
     }
 
     @PutMapping("/update/{id}")
