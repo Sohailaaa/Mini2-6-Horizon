@@ -62,4 +62,10 @@ public class PaymentController {
     public List<Payment> findPaymentsWithAmountGreaterThan(@RequestParam Double threshold) {
         return paymentService.findByAmountThreshold(threshold);
     }
+
+    @GetMapping("/seedPayment")
+    public String seedPayment() {
+        paymentService.seedPayments();
+        return "Seed Payments Successfully";
+    }
 }

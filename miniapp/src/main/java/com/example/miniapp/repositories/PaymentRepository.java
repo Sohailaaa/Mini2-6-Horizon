@@ -15,9 +15,9 @@ import java.util.Optional;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
-    @Query(value = "SELECT * FROM payments WHERE trip_id = :tripId", nativeQuery = true)
+    @Query(value = "SELECT * FROM payment WHERE trip_id = :tripId", nativeQuery = true)
     List<Payment> findByTripId(Long tripId);
 
-    @Query(value = "SELECT * FROM payments WHERE amount > :amountThreshold", nativeQuery = true)
+    @Query(value = "SELECT * FROM payment WHERE amount > :amountThreshold", nativeQuery = true)
     List<Payment> findByAmountGreaterThan(Double amountThreshold);
 }
