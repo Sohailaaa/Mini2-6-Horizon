@@ -1,5 +1,6 @@
 package com.example.miniapp.controllers;
 
+import com.example.miniapp.models.Captain;
 import com.example.miniapp.models.Trip;
 import com.example.miniapp.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,39 +23,41 @@ public class TripController {
 
     @PostMapping("/addTrip")
     public Trip addTrip(@RequestBody Trip trip) {
-        return null;
+        return tripService.addTrip(trip);
     }
 
     @GetMapping("/allTrips")
-    public List<Trip> getAllTrips() {
-        return null;
+    public String getAllTrips() {
+//        return tripService.getAllTrips();
+        return "Hi";
     }
+
 
     @GetMapping("/{id}")
     public Trip getTripById(@PathVariable Long id) {
-        return null;
+        return tripService.getTripById(id);
     }
 
     @PutMapping("/update/{id}")
     public Trip updateTrip(@PathVariable Long id, @RequestBody Trip trip) {
-        return null;
+        return tripService.updateTrip(id, trip);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteTrip(@PathVariable Long id) {
-        return null;
+        tripService.deleteTrip(id);
+        return "Trip deleted successfully";
     }
-
 
     @GetMapping("/findByDateRange")
     public List<Trip> findTripsWithinDateRange(@RequestParam LocalDate startDate, @RequestParam
     LocalDate endDate) {
-        return null;
+        return tripService.findTripsWithinDateRange(startDate.atStartOfDay(), endDate.atStartOfDay());
     }
 
     @GetMapping("/findByCaptainId")
     public List<Trip> findTripsByCaptainId(@RequestParam Long captainId) {
-        return null;
+        return tripService.findTripsByCaptainId(captainId);
     }
 
 }
