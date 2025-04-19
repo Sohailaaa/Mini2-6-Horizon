@@ -7,8 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
-//    Finding customers by their email domain.
-//   • Finding customers by phone prefix
+
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
