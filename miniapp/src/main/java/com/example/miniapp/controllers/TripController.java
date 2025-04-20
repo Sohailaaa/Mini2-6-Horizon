@@ -27,9 +27,8 @@ public class TripController {
     }
 
     @GetMapping("/allTrips")
-    public String getAllTrips() {
-//        return tripService.getAllTrips();
-        return "Hi";
+    public List<Trip> getAllTrips() {
+      return tripService.getAllTrips();
     }
 
 
