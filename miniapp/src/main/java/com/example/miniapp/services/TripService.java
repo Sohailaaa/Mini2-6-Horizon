@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TripService {
@@ -18,30 +19,39 @@ public class TripService {
     }
 
     public Trip addTrip(Trip trip) {
-        return null;
+        return tripRepository.save(trip);
     }
 
     public List<Trip> getAllTrips() {
-        return null;
+        return tripRepository.findAll();
     }
 
     public Trip getTripById(Long id) {
-        return null;
+        Optional<Trip> tripOptional = tripRepository.findById(id);
+        return tripOptional.orElse(null);
     }
 
     public Trip updateTrip(Long id, Trip trip) {
-        return null;
+        return tripRepository.findById(id).map(existingTrip -> {
+            existingTrip.setTripDate(trip.getTripDate());
+            existingTrip.setOrigin(trip.getOrigin());
+            existingTrip.setDestination(trip.getDestination());
+            existingTrip.setTripCost(trip.getTripCost());
+            existingTrip.setCaptain(trip.getCaptain());
+            existingTrip.setCustomer(trip.getCustomer());
+            return tripRepository.save(existingTrip);
+        }).orElse(null);
     }
 
     public void deleteTrip(Long id) {
+        tripRepository.deleteById(id);
     }
 
     public List<Trip> findTripsWithinDateRange(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
+        return tripRepository.findByTripDateBetween(startDate, endDate);
     }
 
     public List<Trip> findTripsByCaptainId(Long captainId) {
-        return null;
+        return tripRepository.findByCaptainId(captainId);
     }
-
 }
