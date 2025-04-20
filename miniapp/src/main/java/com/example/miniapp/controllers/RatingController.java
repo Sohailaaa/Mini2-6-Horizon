@@ -27,23 +27,22 @@ public class RatingController {
 
     @PutMapping("/update/{id}")
     public Rating updateRating(@PathVariable String id, @RequestBody Rating updatedRating) {
-        return null;
+        return ratingService.updateRating(id, updatedRating);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteRating(@PathVariable String id) {
-        return null;
+        ratingService.deleteRating(id);
+        return "Rating deleted";
     }
 
     @GetMapping("/findByEntity")
-    public List<Rating> findRatingsByEntity(@RequestParam Long entityId, @RequestParam String
-            entityType) {
-        return null;
+    public List<Rating> findRatingsByEntity(@RequestParam Long entityId, @RequestParam String entityType) {
+        return ratingService.getRatingsByEntity(entityId, entityType);
     }
 
     @GetMapping("/findAboveScore")
     public List<Rating> findRatingsAboveScore(@RequestParam int minScore) {
-        return null;
+        return ratingService.findRatingsAboveScore(minScore);
     }
-
 }

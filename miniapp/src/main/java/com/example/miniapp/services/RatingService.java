@@ -5,6 +5,7 @@ import com.example.miniapp.repositories.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,23 +18,28 @@ public class RatingService {
     }
 
     public Rating addRating(Rating rating) {
-                 return ratingRepository.save(rating);
-
+        rating.setRatingDate(LocalDateTime.now());
+        return ratingRepository.save(rating);
     }
 
     public Rating updateRating(String id, Rating updatedRating) {
-        return null;
+        Rating rating = ratingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Rating not found"));
+        rating.setScore(updatedRating.getScore());
+        rating.setComment(updatedRating.getComment());
+        return ratingRepository.save(rating);
     }
 
     public void deleteRating(String id) {
+        ratingRepository.deleteById(id);
     }
 
     public List<Rating> getRatingsByEntity(Long entityId, String entityType) {
-        return null;
+        return ratingRepository.findByEntityIdAndEntityType(entityId, entityType);
     }
 
     public List<Rating> findRatingsAboveScore(int minScore) {
-        return null;
+        return ratingRepository.findByScoreGreaterThan(minScore);
     }
 
 }

@@ -30,11 +30,11 @@ public class CaptainService {
     }
 
     public List<Captain> getCaptainsByRating(Double ratingThreshold) {
-        return captainRepository.findByAvgRatingScoreGreaterThan(ratingThreshold);
+        return captainRepository.getCaptainsWithRatingAbove(ratingThreshold);
     }
 
     public Optional<Captain> getCaptainByLicenseNumber(String licenseNumber) {
-        return captainRepository.findByLicenseNumber(licenseNumber);
+        return captainRepository.getCaptainByLicenseNumber(licenseNumber);
     }
 
 

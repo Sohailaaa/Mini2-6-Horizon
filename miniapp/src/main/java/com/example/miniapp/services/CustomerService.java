@@ -28,7 +28,6 @@ public class CustomerService {
         return customerRepository.findById(id).orElse(null);
     }
 
-   //to test
    public Customer updateCustomer(Long id, Customer updatedCustomer) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
         if (optionalCustomer.isPresent()) {
