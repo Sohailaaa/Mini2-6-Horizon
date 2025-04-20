@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface TripRepository extends JpaRepository<Trip, Long> {
 
-    @Query(value = "SELECT * FROM trip WHERE trip_date BETWEEN :startDate AND :endDate", nativeQuery = true)
+    @Query("SELECT t FROM Trip t WHERE t.tripDate BETWEEN :startDate AND :endDate")
     List<Trip> findByTripDateBetween(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
-    @Query(value = "SELECT * FROM trip WHERE captain_id = :captainId", nativeQuery = true)
+    @Query("SELECT t FROM Trip t WHERE t.captain.id = :captainId")
     List<Trip> findByCaptainId(@Param("captainId") Long captainId);
 }

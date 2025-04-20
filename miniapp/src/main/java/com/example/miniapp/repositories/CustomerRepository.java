@@ -12,8 +12,9 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
+    @Query("SELECT c FROM Customer c WHERE c.email LIKE %:domain")
+    List<Customer> findByEmailEndingWith(@Param("domain") String domain);
 
-List<Customer> findByEmailEndingWith(String domain);
-
-List<Customer> findByPhoneNumberStartingWith(String prefix);
+    @Query("SELECT c FROM Customer c WHERE c.phoneNumber LIKE :prefix%")
+    List<Customer> findByPhoneNumberStartingWith(@Param("prefix") String prefix);
 }

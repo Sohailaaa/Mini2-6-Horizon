@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -49,9 +49,9 @@ public class TripController {
     }
 
     @GetMapping("/findByDateRange")
-    public List<Trip> findTripsWithinDateRange(@RequestParam LocalDate startDate, @RequestParam
-    LocalDate endDate) {
-        return tripService.findTripsWithinDateRange(startDate.atStartOfDay(), endDate.atStartOfDay());
+    public List<Trip> findTripsWithinDateRange(@RequestParam LocalDateTime startDate, @RequestParam
+    LocalDateTime endDate) {
+        return tripService.findTripsWithinDateRange(startDate, endDate);
     }
 
     @GetMapping("/findByCaptainId")
