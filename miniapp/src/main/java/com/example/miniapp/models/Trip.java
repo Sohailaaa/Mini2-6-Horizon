@@ -2,6 +2,8 @@ package com.example.miniapp.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +27,16 @@ public class Trip {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "captain_id")
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonIgnoreProperties("trips")
+    @JsonProperty("captain_id")
     private Captain captain;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
-    @JsonIgnore
+    @JsonProperty("customer_id")
+//    @JsonIgnore
+    @JsonIgnoreProperties("trips")
     private Customer customer;
 
 
