@@ -28,6 +28,10 @@ public class PaymentService {
 
     public Payment addPayment(Payment payment) {
 
+        if(payment.getTrip() != null) {
+            tripRepository.save(payment.getTrip());
+        }
+
         return paymentRepository.save(payment);
     }
 

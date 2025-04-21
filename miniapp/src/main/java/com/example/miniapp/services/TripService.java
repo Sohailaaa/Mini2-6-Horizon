@@ -1,6 +1,10 @@
 package com.example.miniapp.services;
 
+import com.example.miniapp.models.Captain;
+import com.example.miniapp.models.Customer;
 import com.example.miniapp.models.Trip;
+import com.example.miniapp.repositories.CaptainRepository;
+import com.example.miniapp.repositories.CustomerRepository;
 import com.example.miniapp.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,15 +16,30 @@ import java.util.Optional;
 @Service
 public class TripService {
     private final TripRepository tripRepository;
+    @Autowired
+    private final CaptainRepository captainRepository;
 
     @Autowired
-    public TripService(TripRepository tripRepository) {
+    private final CustomerRepository customerRepository;
+
+    @Autowired
+    public TripService(TripRepository tripRepository, CaptainRepository captainRepository, CustomerRepository customerRepository) {
         this.tripRepository = tripRepository;
+        this.captainRepository = captainRepository;
+        this.customerRepository = customerRepository;
     }
 
     public Trip addTrip(Trip trip) {
+        if(trip.getCustomer() != null) {
+            customerRepository.save(trip.getCustomer());
+        }
+
+        if(trip.getCaptain() != null) {
+            captainRepository.save(trip.getCaptain());
+        }
         return tripRepository.save(trip);
     }
+
 
     public List<Trip> getAllTrips() {
         return tripRepository.findAll();

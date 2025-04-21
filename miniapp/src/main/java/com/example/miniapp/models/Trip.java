@@ -26,12 +26,10 @@ public class Trip {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "captain_id")
-    @JsonBackReference
     private Captain captain;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
-    @JsonIgnore
     private Customer customer;
 
 
