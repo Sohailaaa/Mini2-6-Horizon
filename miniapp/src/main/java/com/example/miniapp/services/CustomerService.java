@@ -28,17 +28,18 @@ public class CustomerService {
         return customerRepository.findById(id).orElse(null);
     }
 
-   public Customer updateCustomer(Long id, Customer updatedCustomer) {
+    public Customer updateCustomer(Long id, Customer customer) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
         if (optionalCustomer.isPresent()) {
-            Customer customer = optionalCustomer.get();
-            customer.setName(updatedCustomer.getName());
-            customer.setEmail(updatedCustomer.getEmail());
-            customer.setPhoneNumber(updatedCustomer.getPhoneNumber());
-            return customerRepository.save(customer);
+            Customer existingCustomer = optionalCustomer.get();
+            existingCustomer.setName(customer.getName());
+            existingCustomer.setEmail(customer.getEmail());
+            existingCustomer.setPhoneNumber(customer.getPhoneNumber());
+            return customerRepository.save(existingCustomer);
         }
         return null;
     }
+
 
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
