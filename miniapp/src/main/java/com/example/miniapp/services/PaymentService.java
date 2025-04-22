@@ -18,18 +18,18 @@ import java.util.Optional;
 @Service
 public class PaymentService {
     private final PaymentRepository paymentRepository;
-    private final TripRepository tripRepository;
+    private final TripService tripService;
 
     @Autowired
-    public PaymentService(PaymentRepository paymentRepository, TripRepository tripRepository) {
+    public PaymentService(PaymentRepository paymentRepository, TripService tripService) {
         this.paymentRepository = paymentRepository;
-        this.tripRepository = tripRepository;
+        this.tripService = tripService;
     }
 
     public Payment addPayment(Payment payment) {
 
         if(payment.getTrip() != null) {
-            tripRepository.save(payment.getTrip());
+            tripService.addTrip(payment.getTrip());
         }
 
         return paymentRepository.save(payment);
@@ -89,7 +89,7 @@ public class PaymentService {
         );
         trip.setCustomer(customer);
         trip.setCaptain(captain);
-        tripRepository.save(trip);
+        tripService.addTrip(trip);
         Trip trip2 = new Trip(
                 LocalDateTime.of(2026, 5, 10, 14, 30),
                 "Dubai",
@@ -98,7 +98,7 @@ public class PaymentService {
         );
         trip2.setCustomer(customer);
         trip2.setCaptain(captain);
-        tripRepository.save(trip2);
+        tripService.addTrip(trip2);
         Payment payment = new Payment(10.1,"card",true);
         payment.setTrip(trip);
         paymentRepository.save(payment);
