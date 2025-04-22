@@ -21,7 +21,7 @@ public class Payment {
     private Boolean paymentStatus;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "trip_id")
+    @JoinColumn(name = "trip_id", referencedColumnName = "id")
     private Trip trip;
 
     public Payment(Double amount, String paymentMethod, Boolean paymentStatus) {
@@ -29,4 +29,13 @@ public class Payment {
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
     }
+
+    public Payment(Long id,Double amount, String paymentMethod, Boolean paymentStatus) {
+        this.id = id;
+        this.amount = amount;
+        this.paymentMethod = paymentMethod;
+        this.paymentStatus = paymentStatus;
+        this.trip = trip;
+    }
+
 }

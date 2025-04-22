@@ -24,12 +24,12 @@ public class Trip {
     private String destination;
     private Double tripCost;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "captain_id")
+    @ManyToOne
+    @JoinColumn(name = "captain_id", referencedColumnName = "id")
     private Captain captain;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
+    @ManyToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
 
@@ -37,10 +37,21 @@ public class Trip {
     @JsonIgnore
     private Payment payment;
 
+    public Trip(Long id,LocalDateTime tripDate, String origin, String destination, Double tripCost) {
+        this.id = id;
+        this.tripDate = tripDate;
+        this.origin = origin;
+        this.destination = destination;
+        this.tripCost = tripCost;
+    }
+
     public Trip(LocalDateTime tripDate, String origin, String destination, Double tripCost) {
         this.tripDate = tripDate;
         this.origin = origin;
         this.destination = destination;
         this.tripCost = tripCost;
     }
+
+
+
 }

@@ -30,12 +30,22 @@ public class TripService {
     }
 
     public Trip addTrip(Trip trip) {
-        if(trip.getCustomer() != null) {
-            customerRepository.save(trip.getCustomer());
+        if (trip.getCaptain() != null) {
+            Optional<Captain> existingCaptain = captainRepository.getCaptainByLicenseNumber(trip.getCaptain().getLicenseNumber());
+            if (existingCaptain.isPresent()) {
+                trip.setCaptain(existingCaptain.get());
+            } else {
+                captainRepository.save(trip.getCaptain());
+            }
         }
 
-        if(trip.getCaptain() != null) {
-            captainRepository.save(trip.getCaptain());
+        if (trip.getCustomer() != null) {
+            Optional<Customer> existingCustomer = customerRepository.findByEmail(trip.getCustomer().getEmail()); // better than "endingWith"
+            if (existingCustomer.isPresent()) {
+                trip.setCustomer(existingCustomer.get());
+            } else {
+                customerRepository.save(trip.getCustomer());
+            }
         }
         return tripRepository.save(trip);
     }

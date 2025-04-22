@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Mini2-6-Horizon.iml" filepath="$PROJECT_DIR$/.idea/Mini2-6-Horizon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/miniapp/miniapp.iml" filepath="$PROJECT_DIR$/miniapp/miniapp.iml" />
     </modules>
   </component>
 </project>

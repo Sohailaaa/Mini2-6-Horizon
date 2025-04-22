@@ -29,6 +29,13 @@ public class Captain {
     @JsonIgnore
     private List<Trip> trips = new ArrayList<>();
 
+    public Captain(Long id, String name, String licenseNumber, Double avgRatingScore) {
+        this.id = id;
+        this.name = name;
+        this.licenseNumber = licenseNumber;
+        this.avgRatingScore = avgRatingScore;
+        trips = new ArrayList<>();
+    }
     public Captain(String name, String licenseNumber, Double avgRatingScore) {
 
         this.name = name;
